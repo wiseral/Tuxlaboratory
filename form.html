@@ -1,0 +1,43 @@
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>imguploader</title>
+</head>
+<body>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  <div id="drag-drop-area" style="border: 1px solid gray; height: 135px;">
+    <div class="drag-drop-inside">
+      <p class="drag-drop-info">ここにファイルをドロップ</p>
+      <p>または</p>
+      <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="upfile[]" multiple="multiple" ></p>
+      <input type="submit" value="upload">
+    </div>
+  </div>
+</form>
+<script>
+var fileArea = document.getElementById('drag-drop-area');
+var fileInput = document.getElementById('fileInput');
+
+
+fileArea.addEventListener('dragover', function(evt){
+  evt.preventDefault();
+  fileArea.classList.add('dragover');
+});
+
+fileArea.addEventListener('dragleave', function(evt){
+    evt.preventDefault();
+    fileArea.classList.remove('dragover');
+});
+fileArea.addEventListener('drop', function(evt){
+  evt.preventDefault();
+  fileArea.classList.remove('dragenter');  
+  
+  var files = evt.dataTransfer.files;
+  fileInput.files = files;
+  
+    
+});
+</script>
+</body>
+</html>
